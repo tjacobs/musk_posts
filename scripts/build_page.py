@@ -1,4 +1,4 @@
-"""Build page.html from data/summary.json, the validation labels and the page template."""
+"""Build index.html from data/summary.json, the validation labels and the page template."""
 import glob, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,5 +57,5 @@ summary['examples'] = examples
 
 tpl = open(os.path.join(ROOT, 'scripts/page_template.html')).read()
 html = tpl.replace('/*__DATA__*/null', json.dumps(summary).replace('</', '<\\/'))
-open(os.path.join(ROOT, 'page.html'), 'w').write(html)
-print('wrote page.html', f"(validation: {summary['validation']})")
+open(os.path.join(ROOT, 'index.html'), 'w').write(html)
+print('wrote index.html', f"(validation: {summary['validation']})")
