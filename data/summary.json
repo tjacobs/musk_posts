@@ -197,16 +197,16 @@
   },
   "2025": {
    "n": 7313,
-   "n_classified": 5977,
-   "unclassifiable_pct": 18.3,
+   "n_classified": 6659,
+   "unclassifiable_pct": 8.9,
    "pct": {
-    "Politics": 45.57,
-    "Companies": 34.92,
-    "Rights & media": 11.16,
-    "Humor & personal": 4.99,
-    "Science & tech": 1.77,
-    "News & events": 0.84,
-    "Economy & crypto": 0.75
+    "Politics": 45.46,
+    "Companies": 34.07,
+    "Rights & media": 10.68,
+    "Humor & personal": 6.49,
+    "Science & tech": 1.68,
+    "News & events": 0.83,
+    "Economy & crypto": 0.8
    }
   }
  },
@@ -502,26 +502,27 @@
   },
   "2025": {
    "n": 7313,
-   "n_classified": 5977,
-   "unclassifiable_pct": 18.3,
+   "n_classified": 6659,
+   "unclassifiable_pct": 8.9,
    "pct": {
-    "government": 20.09,
-    "ai": 17.3,
-    "us_politics": 11.61,
-    "intl_politics": 7.58,
-    "spacex": 6.81,
-    "immigration_crime": 6.29,
-    "tesla": 5.94,
-    "culture_society": 4.65,
-    "x_platform": 4.28,
-    "media": 4.12,
-    "humor": 2.63,
-    "free_speech": 2.39,
-    "personal": 2.36,
-    "science_tech": 1.77,
-    "news_events": 0.84,
-    "economy": 0.75,
-    "other_ventures": 0.59
+    "government": 19.66,
+    "ai": 16.11,
+    "us_politics": 12.76,
+    "spacex": 7.51,
+    "intl_politics": 7.19,
+    "tesla": 5.93,
+    "immigration_crime": 5.84,
+    "culture_society": 4.45,
+    "media": 4.05,
+    "x_platform": 3.95,
+    "humor": 3.5,
+    "personal": 2.99,
+    "free_speech": 2.18,
+    "science_tech": 1.68,
+    "news_events": 0.83,
+    "economy": 0.71,
+    "other_ventures": 0.57,
+    "crypto": 0.09
    }
   }
  },
@@ -722,16 +723,16 @@
    },
    "2025": {
     "n": 1772,
-    "n_classified": 715,
-    "unclassifiable_pct": 59.7,
+    "n_classified": 1395,
+    "unclassifiable_pct": 21.3,
     "pct": {
-     "Companies": 47.97,
-     "Politics": 30.91,
-     "Humor & personal": 12.59,
-     "Rights & media": 5.45,
-     "Science & tech": 1.54,
-     "News & events": 1.4,
-     "Economy & crypto": 0.14
+     "Companies": 37.63,
+     "Politics": 37.56,
+     "Humor & personal": 15.99,
+     "Rights & media": 5.88,
+     "Science & tech": 1.22,
+     "News & events": 1.08,
+     "Economy & crypto": 0.65
     }
    }
   },
@@ -889,14 +890,14 @@
    },
    "2025": {
     "n": 5541,
-    "n_classified": 5262,
+    "n_classified": 5264,
     "unclassifiable_pct": 5.0,
     "pct": {
-     "Politics": 47.57,
-     "Companies": 33.14,
-     "Rights & media": 11.93,
-     "Humor & personal": 3.95,
-     "Science & tech": 1.81,
+     "Politics": 47.55,
+     "Companies": 33.13,
+     "Rights & media": 11.95,
+     "Humor & personal": 3.97,
+     "Science & tech": 1.8,
      "Economy & crypto": 0.84,
      "News & events": 0.76
     }
@@ -919,26 +920,26 @@
   "2022": 9.56,
   "2023": 10.47,
   "2024": 49.54,
-  "2025": 52.28
+  "2025": 52.03
  },
  "overall_category": {
-  "spacex": 12.77,
-  "government": 11.78,
-  "us_politics": 10.54,
-  "tesla": 10.22,
-  "ai": 8.9,
-  "x_platform": 7.81,
-  "personal": 5.88,
-  "humor": 5.48,
-  "intl_politics": 4.8,
-  "immigration_crime": 4.73,
-  "media": 4.49,
-  "culture_society": 4.16,
-  "free_speech": 3.2,
-  "science_tech": 1.97,
-  "other_ventures": 1.38,
-  "news_events": 0.92,
-  "economy": 0.77,
-  "crypto": 0.23
+  "spacex": 12.8,
+  "government": 11.95,
+  "us_politics": 11.06,
+  "tesla": 10.03,
+  "ai": 8.77,
+  "x_platform": 7.52,
+  "personal": 5.99,
+  "humor": 5.72,
+  "intl_politics": 4.76,
+  "immigration_crime": 4.61,
+  "media": 4.45,
+  "culture_society": 4.09,
+  "free_speech": 3.07,
+  "science_tech": 1.92,
+  "other_ventures": 1.34,
+  "news_events": 0.91,
+  "economy": 0.75,
+  "crypto": 0.25
  }
 }

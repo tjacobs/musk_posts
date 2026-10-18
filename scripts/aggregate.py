@@ -18,11 +18,18 @@ for line in open(os.path.join(ROOT, 'data/context.jsonl')):
     ctx[r['id']] = r
 labels = [r for f in sorted(glob.glob(os.path.join(ROOT, 'data/labels/batch_*.json'))) for r in json.load(open(f))]
 lab = pd.DataFrame(labels).drop_duplicates('id')
+# 2025 posts that are only an image or video were labeled from the picture; use those where they found a topic
+img = {r['id']: r for f in sorted(glob.glob(os.path.join(ROOT, 'data/labels_images/batch_*.json'))) for r in json.load(open(f))
+       if r['primary'] not in (None, 'low_content')}
+use = lab['id'].isin(img) & (lab['primary'] == 'low_content')
+lab['from_image'] = use
+lab.loc[use, 'primary'] = lab.loc[use, 'id'].map(lambda i: img[i]['primary'])
+lab.loc[use, 'secondary'] = lab.loc[use, 'id'].map(lambda i: img[i]['secondary'])
 df = df.merge(lab, on='id', how='left')
 df['kind'] = df['id'].map(lambda i: 'quote' if (ctx.get(i) or {}).get('quoted_text') else 'own post')
 df['group'] = df['primary'].map(GROUP)
 df['secondary'] = df['secondary'].map(lambda s: s if isinstance(s, list) else [])
-df[['id', 'created_at', 'year', 'kind', 'primary', 'secondary', 'group', 'text']].to_csv(
+df[['id', 'created_at', 'year', 'kind', 'primary', 'secondary', 'group', 'from_image', 'text']].to_csv(
     os.path.join(ROOT, 'data/labeled_tweets.csv'), index=False)
 
 lab_df = df[df['primary'].notna()]

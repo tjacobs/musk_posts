@@ -167,7 +167,7 @@ code { font-family: var(--font-data); font-size: 0.9em; }
       <ul id="limits">
         <li><b>No replies or reposts.</b> No post in the archive begins with @ or RT @. Other public archives list 55,000 to 60,000 posts through early 2025, so this is a fraction of what he posts.</li>
         <li id="l-coverage"></li>
-        <li><b>Photos and videos are not seen.</b> Posts that are only an image or video, with no quoted tweet or link title, are mostly unclassified.</li>
+        <li><b>Images are only read for 2025.</b> Before 2025, posts that are only an image or video, with no quoted post, are mostly unclassified. In 2025 the classifier looked at the image, but a single video frame often shows little.</li>
       </ul>
     </div>
   </section>
@@ -406,9 +406,9 @@ const early12 = Object.keys(DATA.by_group).filter(y => +y >= 2012 && +y <= 2021)
 document.getElementById('m-data').innerHTML =
   `${fmtInt(nCharted)} posts from @elonmusk, January 2012 to December 10, 2025, merged and de-duplicated from two public files in <a href="https://gist.github.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2">one GitHub gist</a>: <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/222650d9fd5870d82ee5c3b761125c12dbbcb09e/elonmusk-ALL-2025-12-10.json">elonmusk-ALL-2025-12-10.json</a> (18,384 posts, collected December 10, 2025) and <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/3ac53dc15c8aecb2b0db6a4740df66514cc3c571/elonmusk_tweets_2025-11-02T01-12-31-543Z.json">elonmusk_tweets_2025-11-02T01-12-31-543Z.json</a> (12,885 posts, collected November 2, 2025). For each post, the post it quotes was fetched from X.`;
 document.getElementById('m-class').textContent =
-  `Claude Haiku read each post, with the post it quotes alongside, and gave it one of 18 topics, or "unclassified" if no topic could be read. The 18 topics are grouped into eight categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified. The bars show categories and the grid shows topics, both as a share of all posts that year.`;
+  `Claude Haiku read each post, with the post it quotes alongside, and gave it one of 18 topics, or "unclassified" if no topic could be read. For 2025 posts that were only an image or a video, it looked at the picture, or the video's preview frame, instead. The 18 topics are grouped into eight categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified. The bars show categories and the grid shows topics, both as a share of all posts that year.`;
 document.getElementById('m-acc').textContent =
-  `As a check, Claude Opus 5.5 labeled 200 posts on its own (150 random, 50 from before 2022), with no person reviewing them. Haiku's topic matched Opus's ${fmt(v.exact)}% of the time and its category ${fmt(v.group)}% of the time. This compares two Claude models with each other. It does not measure accuracy against a person.`;
+  `As a check, Claude Opus 5.5 labeled 200 posts on its own (150 random, 50 from before 2022), with no person reviewing them. Haiku's topic matched Opus's ${fmt(v.exact)}% of the time and its category ${fmt(v.group)}% of the time. This compares two Claude models with each other. It does not measure accuracy against a person. For the image labels, Claude Sonnet 5.5 looked at 24 of them: 20 looked right, 3 could not be judged from dark video frames and 1 looked wrong.`;
 const outside = { 2018: 2288, 2019: 2933, 2020: 3367, 2021: 3113, 2023: 13000 };
 const arch = y => DATA.by_group[y].n;
 const pctOf = y => Math.round(100 * arch(y) / outside[y]);
