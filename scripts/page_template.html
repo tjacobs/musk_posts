@@ -44,7 +44,7 @@ p { margin: 0; max-width: 66ch; }
 
 section { display: grid; gap: 14px; min-width: 0; }
 .section-head { display: grid; gap: 6px; }
-.section-head p { color: var(--ink-2); }
+.section-head p { color: var(--ink-2); max-width: none; }
 .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink-2); }
 .legend span { white-space: nowrap; }
@@ -122,7 +122,7 @@ code { font-family: var(--font-data); font-size: 0.9em; }
   <section>
     <div class="section-head">
       <h2>Posts per category</h2>
-      <p>Each bar is one year of posts, split into 8 categories.</p>
+      <p>Each bar is one year of posts, split into eight categories.</p>
     </div>
     <div class="card">
       <div class="toolbar">
@@ -138,10 +138,11 @@ code { font-family: var(--font-data); font-size: 0.9em; }
   <section>
     <div class="section-head">
       <h2>Posts per topic</h2>
-      <p>Topics break down categories even further, with 18 topics total. Shown here is the percent of each year's posts by topic. Each topic belongs to a category, shown under its name. Darker cells are larger shares. Click a year to sort by it.</p>
+      <p>Topics break down categories even further, with 18 topics total. Shown below is the percent of each year's posts broken down by topic. Each topic belongs to a category, shown under its name. Darker cells are larger shares. Click a year to sort by it.</p>
     </div>
     <div class="card">
       <div class="table-wrap"><table class="heat" id="heat"></table></div>
+      <div class="example" id="example-topic" aria-live="polite"><p class="example-hint">Click a cell to see an example post.</p></div>
     </div>
   </section>
 
@@ -267,7 +268,7 @@ const lastYear = years[years.length - 1];
 document.getElementById('eyebrow').textContent =
   `@elonmusk · ${fmtInt(nCharted)} posts · 2012–2025`;
 document.getElementById('lede').innerHTML =
-  `From 2012 to 2019, <strong>${fmt(coEarly)}%</strong> of his posts were about his companies.<br>` +
+  `From 2012 to 2019, <strong>${fmt(coEarly)}%</strong> of his posts were about his companies. ` +
   `In 2024–2025, politics was <strong>${fmt(polRecent)}%</strong> and his companies <strong>${fmt(coRecent)}%</strong>.`;
 
 /* ---------- chart 1: 100% stacked bars ---------- */
@@ -353,11 +354,28 @@ document.getElementById('lede').innerHTML =
   const cats = Object.keys(CAT_NAMES);
   const val = (c, y) => { const r = DATA.by_category[y]; return (r.pct[c] || 0) * r.n_classified / r.n; };
   let sortYear = years[0];
+  let picked = null; // { y, k } of the cell whose example is showing
+  const box = document.getElementById('example-topic');
 
-  function cell(title, v, r) {
-    const tip = `<b>${title}</b><br>${fmt(v, 1)}% of posts<br><span class='t-sub'>${fmtInt(Math.round(v * r.n / 100))} of ${fmtInt(r.n)} posts</span>`;
+  function showCell(td) {
+    picked = { y: td.dataset.y, k: td.dataset.k };
+    tbl.querySelectorAll('td.cell').forEach(c => { c.style.outline = ''; });
+    td.style.outline = '2px solid var(--ink)'; td.style.outlineOffset = '-2px';
+    const unc = picked.k === UNC.key;
+    const ex = unc ? (DATA.examples[picked.y] || {})[UNC.key] : (DATA.topic_examples[picked.y] || {})[picked.k];
+    const name = unc ? 'Unclassified' : CAT_NAMES[picked.k];
+    box.textContent = '';
+    const add = (tag, cls, text) => { const e = document.createElement(tag); e.className = cls; e.textContent = text; box.appendChild(e); return e; };
+    if (!ex || !/^\d+$/.test(ex.id)) { add('p', 'example-hint', `No example post for ${yearLabel(picked.y)} · ${name}.`); return; }
+    add('div', 'example-meta', `${yearLabel(picked.y)} · ${name} · most-liked post in this cell (${fmtInt(ex.likes)} likes)`);
+    add('p', 'example-text', ex.text || '(photo, video or link only)');
+    const a = add('a', '', 'Open on X ↗'); a.href = `https://x.com/elonmusk/status/${ex.id}`; a.target = '_blank'; a.rel = 'noopener';
+  }
+
+  function cell(title, v, r, y, key) {
+    const tip = `<b>${title}</b><br>${fmt(v, 1)}% of posts<br><span class='t-sub'>${fmtInt(Math.round(v * r.n / 100))} of ${fmtInt(r.n)} posts</span><br>Click for an example post`;
     const mix = Math.min(78, (v / cap) * 78).toFixed(1);
-    return `<td class="cell" tabindex="0" data-tip="${tip}" style="background: color-mix(in oklab, var(--accent) ${mix}%, var(--surface))">${v >= 0.5 ? fmt(v) + '%' : '·'}</td>`;
+    return `<td class="cell" tabindex="0" data-y="${y}" data-k="${key}" data-tip="${tip}" style="background: color-mix(in oklab, var(--accent) ${mix}%, var(--surface))">${v >= 0.5 ? fmt(v) + '%' : '·'}</td>`;
   }
 
   function render() {
@@ -367,11 +385,11 @@ document.getElementById('lede').innerHTML =
     rows.forEach(c => {
       const cat = GROUPS.find(g => g.cats.includes(c));
       html += `<tr><td>${CAT_NAMES[c]}<span class="grp">${cat ? cat.label : ''}</span></td>` + years.map(y =>
-        cell(`${yearLabel(y)} · ${CAT_NAMES[c]}`, val(c, y), DATA.by_category[y])).join('') + '</tr>';
+        cell(`${yearLabel(y)} · ${CAT_NAMES[c]}`, val(c, y), DATA.by_category[y], y, c)).join('') + '</tr>';
     });
     html += '<tr class="group-start"><td>Unclassified</td>' + years.map(y => {
       const r = DATA.by_group[y];
-      return cell(`${yearLabel(y)} · Unclassified`, share(r, UNC.key), r);
+      return cell(`${yearLabel(y)} · Unclassified`, share(r, UNC.key), r, y, UNC.key);
     }).join('') + '</tr>';
     tbl.innerHTML = html + '</tbody>';
     tbl.querySelectorAll('td.cell').forEach(td => {
@@ -380,6 +398,12 @@ document.getElementById('lede').innerHTML =
       td.addEventListener('pointerleave', hideTip);
       td.addEventListener('focus', () => { const b = td.getBoundingClientRect(); showTip(h, b.right, b.top); });
       td.addEventListener('blur', hideTip);
+    });
+    tbl.querySelectorAll('td.cell').forEach(td => {
+      td.style.cursor = 'pointer';
+      td.addEventListener('click', () => showCell(td));
+      td.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showCell(td); } });
+      if (picked && td.dataset.y === picked.y && td.dataset.k === picked.k) { td.style.outline = '2px solid var(--ink)'; td.style.outlineOffset = '-2px'; }
     });
     tbl.querySelectorAll('button.sort').forEach(btn => btn.addEventListener('click', () => {
       sortYear = btn.dataset.year; hideTip(); render();
@@ -425,11 +449,11 @@ const v = DATA.validation;
 const nPosts = ys => ys.reduce((t, y) => t + DATA.by_group[y].n, 0);
 const early12 = Object.keys(DATA.by_group).filter(y => +y >= 2012 && +y <= 2021).map(y => DATA.by_group[y].n);
 document.getElementById('m-data').innerHTML =
-  `${fmtInt(nCharted)} posts from @elonmusk, January 2012 to December 10, 2025, merged and de-duplicated from two public files in <a href="https://gist.github.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2">one GitHub gist</a>: <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/222650d9fd5870d82ee5c3b761125c12dbbcb09e/elonmusk-ALL-2025-12-10.json">elonmusk-ALL-2025-12-10.json</a> (18,384 posts, collected December 10, 2025) and <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/3ac53dc15c8aecb2b0db6a4740df66514cc3c571/elonmusk_tweets_2025-11-02T01-12-31-543Z.json">elonmusk_tweets_2025-11-02T01-12-31-543Z.json</a> (12,885 posts, collected November 2, 2025). For each post, the tweet it quotes and any link title were fetched from X's public embed service. 59% of the posts quote another tweet.`;
+  `${fmtInt(nCharted)} posts from @elonmusk, January 2012 to December 10, 2025, merged and de-duplicated from two public files in <a href="https://gist.github.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2">one GitHub gist</a>: <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/222650d9fd5870d82ee5c3b761125c12dbbcb09e/elonmusk-ALL-2025-12-10.json">elonmusk-ALL-2025-12-10.json</a> (18,384 posts, collected December 10, 2025) and <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/3ac53dc15c8aecb2b0db6a4740df66514cc3c571/elonmusk_tweets_2025-11-02T01-12-31-543Z.json">elonmusk_tweets_2025-11-02T01-12-31-543Z.json</a> (12,885 posts, collected November 2, 2025). For each post, the post it quotes was fetched from X.`;
 document.getElementById('m-class').textContent =
-  `Claude Haiku read each post, with the quoted tweet or link title alongside, and gave it one of 18 topics, or "unclassified" if no topic could be read. The 18 topics are grouped into 8 categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified. The bars show categories and the grid shows topics, both as a share of all posts that year.`;
+  `Claude Haiku read each post, with the post it quotes alongside, and gave it one of 18 topics, or "unclassified" if no topic could be read. The 18 topics are grouped into eight categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified. The bars show categories and the grid shows topics, both as a share of all posts that year.`;
 document.getElementById('m-acc').textContent =
-  `As a check, Claude labeled 200 posts separately (150 random, 50 from before 2022), without a person reviewing them. Haiku chose the same topic ${fmt(v.exact)}% of the time and the same category ${fmt(v.group)}% of the time.`;
+  `As a check, Claude Opus 5.5 labeled 200 posts on its own (150 random, 50 from before 2022), with no person reviewing them. Haiku's topic matched Opus's ${fmt(v.exact)}% of the time and its category ${fmt(v.group)}% of the time. This compares two Claude models with each other. It does not measure accuracy against a person.`;
 const outside = { 2018: 2288, 2019: 2933, 2020: 3367, 2021: 3113, 2023: 13000 };
 const arch = y => DATA.by_group[y].n;
 const pctOf = y => Math.round(100 * arch(y) / outside[y]);

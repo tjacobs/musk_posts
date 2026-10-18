@@ -1,6 +1,6 @@
 # Musk Posts
 
-What Elon Musk posts about, by year (2012 to 2025). Each post is labeled with one of 18 topics by Claude Haiku. The topics roll up into 8 categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified.
+What Elon Musk posts about, by year (2012 to 2025). Each post is labeled with one of 18 topics by Claude Haiku. The topics roll up into eight categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified.
 
 The finished report is `index.html`, a self-contained page with a stacked bar chart by category, a sortable grid of all 18 topics, and an example post for each bar section.
 
@@ -13,11 +13,11 @@ The archive has no replies or plain reposts, so it is a fraction of everything h
 ## Method
 
 1. Merge the two gist files into `data/tweets.csv` with `scripts/merge.py`.
-2. Fetch the tweet each post quotes, plus any link title, from X's public embed service with `scripts/enrich.py`, so short reactions can be read in context.
+2. Fetch the post that each post quotes from X with `scripts/enrich.py`, so short reactions can be read in context.
 3. Send batches of 100 posts to Claude Haiku through the `claude` command-line tool with `scripts/classify.py`, which writes `data/labels/`. The topic list and tie-break rules are in `categories.md`.
 4. Build `data/labeled_tweets.csv` and `data/summary.json` with `scripts/aggregate.py`.
 5. Fill `scripts/page_template.html` and write `index.html` with `scripts/build_page.py`.
-6. Score the labels against `data/validation_labels.json` with `scripts/compare.py`. That file holds 200 posts (150 random, 50 from before 2022) labeled separately by Claude, with no person reviewing them. Haiku matched on the same topic 86% of the time and the same category 90% of the time.
+6. Score the labels against `data/validation_labels.json` with `scripts/compare.py`. That file holds 200 posts (150 random, 50 from before 2022) labeled on its own by Claude Opus 5.5, with no person reviewing them. Haiku's topic matched Opus's 86% of the time and its category 90% of the time. This compares two Claude models; it is not accuracy against a person.
 
 Not included, to keep the repo small and avoid copying other people's posts: the raw gist files, the fetched quoted-tweet context (`data/context.jsonl`) and downloaded images. Run `merge.py` and `enrich.py` to rebuild them.
 
@@ -25,4 +25,4 @@ Not included, to keep the repo small and avoid copying other people's posts: the
 
 - No replies or reposts, and uneven coverage by year.
 - Photos and videos are not seen by the classifier, so posts that are only an image or video are mostly unclassified.
-- The comparison labels were made by Claude, not by a person.
+- The comparison labels were made by Claude Opus 5.5, not by a person.

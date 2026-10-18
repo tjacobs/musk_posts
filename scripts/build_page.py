@@ -55,6 +55,16 @@ for (year, grp), g in m[m.year >= 2012].groupby(['year', 'group']):
                                                    likes=int(r.likes), topic=r.primary)
 summary['examples'] = examples
 
+topic_examples = {}
+for (year, prim), g in m[(m.year >= 2012) & (m.primary != 'low_content')].groupby(['year', 'primary']):
+    g = g[g.n_words >= 5]
+    if g.empty:
+        continue
+    r = g.sort_values('likes', ascending=False).iloc[0]
+    text = (r.clean_text if isinstance(r.clean_text, str) else '').strip()
+    topic_examples.setdefault(str(year), {})[prim] = dict(id=r.id, text=text[:320] + ('…' if len(text) > 320 else ''), likes=int(r.likes))
+summary['topic_examples'] = topic_examples
+
 tpl = open(os.path.join(ROOT, 'scripts/page_template.html')).read()
 html = tpl.replace('/*__DATA__*/null', json.dumps(summary).replace('</', '<\\/'))
 open(os.path.join(ROOT, 'index.html'), 'w').write(html)
