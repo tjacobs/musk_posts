@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.DS_Store
+raw-gist/
+data/images/
+data/context.jsonl
+data/validation_context.json
+data/labels_test/
+data/test_ids.txt
+data/*.log

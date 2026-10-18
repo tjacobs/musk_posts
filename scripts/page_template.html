@@ -1,0 +1,437 @@
+<title>Elon Musk Posts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single report column (~880px) — summary tiles, then one chart per finding, then method notes. */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #7d7b75;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --ring: rgba(11, 11, 11, 0.10);
+  --accent: #2a78d6;
+  --kind-own: #3a3936;
+  --kind-quote: #b3b1a8;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948; --unc: #cfcdc4;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+.page { max-width: 880px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 40px; }
+header { display: grid; gap: 12px; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; }
+h1 { font-family: var(--font-display); font-stretch: 118%; font-weight: 800; font-size: clamp(30px, 5.4vw, 48px); line-height: 1.04; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-stretch: 108%; font-weight: 700; font-size: 21px; line-height: 1.2; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 650; font-size: 15px; margin: 0; }
+p { margin: 0; max-width: 66ch; }
+.lede { font-size: 17px; color: var(--ink-2); }
+.lede strong { color: var(--ink); font-weight: 600; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.tile .label { font-size: 13px; color: var(--ink-2); }
+.tile .value { font-family: var(--font-display); font-stretch: 112%; font-weight: 700; font-size: 32px; line-height: 1.1; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.tile .value .arrow { color: var(--muted); font-weight: 500; font-size: 22px; }
+.tile .note { font-size: 12px; color: var(--muted); }
+
+section { display: grid; gap: 14px; min-width: 0; }
+.section-head { display: grid; gap: 6px; }
+.section-head p { color: var(--ink-2); }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink-2); }
+.legend span { white-space: nowrap; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.chart { width: 100%; overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart.wide svg { min-width: 640px; }
+svg text { font-family: var(--font-body); fill: var(--ink-2); }
+svg .tick { font-family: var(--font-data); font-size: 11px; fill: var(--muted); }
+svg .gridline { stroke: var(--grid); stroke-width: 1; }
+svg .baseline { stroke: var(--axis); stroke-width: 1; }
+svg .hit { cursor: default; }
+svg .hit:focus { outline: none; }
+svg .hit:focus-visible { stroke: var(--ink); stroke-width: 2; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--axis); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.btn:hover { background: var(--grid); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.caption { font-size: 12px; color: var(--muted); }
+
+.example { border-top: 1px solid var(--grid); padding-top: 12px; display: grid; gap: 6px; min-height: 92px; align-content: start; }
+.example-hint { color: var(--muted); font-size: 13px; }
+.example-meta { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.example-text { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 70ch; }
+.example a { font-size: 13px; width: fit-content; }
+svg .seg { cursor: pointer; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
+th, td { padding: 5px 8px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-weight: 600; color: var(--ink-2); border-bottom: 1px solid var(--axis); }
+tbody td { border-bottom: 1px solid var(--grid); font-family: var(--font-data); font-size: 12px; }
+tbody td:first-child { font-family: var(--font-body); font-size: 12.5px; color: var(--ink); }
+
+.heat td.cell { font-family: var(--font-data); font-size: 11.5px; color: var(--ink); text-align: center; min-width: 34px; padding: 6px 2px; border: 2px solid var(--surface); border-radius: 4px; }
+.heat thead th { text-align: center; font-family: var(--font-data); font-weight: 500; font-size: 11px; color: var(--muted); border-bottom: none; }
+.heat thead th:first-child { text-align: left; }
+.sort { font: inherit; font-family: var(--font-data); font-size: 11px; color: var(--muted); background: none; border: 0; border-radius: 4px; padding: 2px 3px; cursor: pointer; }
+.sort:hover { color: var(--ink); }
+.sort.on { color: var(--ink); font-weight: 500; }
+.sort.on::after { content: ' \2193'; }
+.sort:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.heat tbody td:first-child { border-bottom: none; padding-right: 12px; }
+.heat tr.group-start td { padding-top: 10px; }
+.heat .grp { font-size: 11px; color: var(--muted); display: block; line-height: 1.1; }
+
+.tooltip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--ring); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.4; max-width: 240px; }
+.tooltip b { font-weight: 600; }
+.tooltip .t-sub { color: var(--muted); font-family: var(--font-data); font-size: 11.5px; }
+
+.method { display: grid; gap: 18px; }
+.method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
+.method-grid div { display: grid; gap: 4px; align-content: start; }
+.method-grid p, .method li { font-size: 14px; color: var(--ink-2); }
+.method ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 70ch; }
+a { color: var(--ink); text-decoration-color: var(--axis); text-underline-offset: 2px; overflow-wrap: anywhere; }
+a:hover { text-decoration-color: var(--ink); }
+code { font-family: var(--font-data); font-size: 0.9em; }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: background 120ms ease; } }
+</style>
+
+<div class="page">
+  <header>
+    <div class="eyebrow" id="eyebrow">@elonmusk · posts and quote tweets</div>
+    <h1>Elon Musk posts</h1>
+    <p class="lede" id="lede"></p>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2>Posts per category</h2>
+      <p>Each bar is one year of posts, split into 8 categories.</p>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <div class="legend" id="legend-groups"></div>
+        <button class="btn" id="toggle-group-table" type="button" aria-expanded="false">Show table</button>
+      </div>
+      <div class="chart" id="chart-groups"></div>
+      <div class="example" id="example" aria-live="polite"><p class="example-hint">Click a section of a bar to see an example post.</p></div>
+      <div class="table-wrap" id="table-groups" hidden></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>All 18 topics</h2>
+      <p>Percent of each year's posts by topic, highest first. Each topic belongs to a category, shown under its name. Darker cells are larger shares. Click a year to sort by it.</p>
+    </div>
+    <div class="card">
+      <div class="table-wrap"><table class="heat" id="heat"></table></div>
+    </div>
+  </section>
+
+  <section hidden> <!-- hidden for now; remove the attribute to show -->
+    <div class="section-head">
+      <h2>His own posts vs. quote tweets, 2024–2025</h2>
+      <p>Quote tweets reshare someone else's post with a short comment. Most of his recent volume is quote tweets.</p>
+    </div>
+    <div class="card">
+      <div class="legend">
+        <span><i style="background: var(--kind-own)"></i>His own posts <span class="caption" id="n-own"></span></span>
+        <span><i style="background: var(--kind-quote)"></i>Quote tweets <span class="caption" id="n-quote"></span></span>
+      </div>
+      <div class="chart" id="chart-kind"></div>
+    </div>
+  </section>
+
+  <section class="method">
+    <div class="section-head"><h2>How this was made</h2></div>
+    <div class="method-grid">
+      <div>
+        <h3>Data</h3>
+        <p id="m-data"></p>
+      </div>
+      <div>
+        <h3>Topics and categories</h3>
+        <p id="m-class"></p>
+      </div>
+      <div>
+        <h3>Accuracy</h3>
+        <p id="m-acc"></p>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 6px">Limits</h3>
+      <ul id="limits">
+        <li><b>No replies or reposts.</b> No post in the archive begins with @ or RT @. Other public archives list 55,000 to 60,000 posts through early 2025, so this is a fraction of what he posts.</li>
+        <li id="l-coverage"></li>
+        <li><b>Photos and videos are not seen.</b> Posts that are only an image or video, with no quoted tweet or link title, are mostly unclassified.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="tooltip" id="tooltip" hidden></div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+const GROUPS = [
+  { key: 'Politics', label: 'Politics', color: 'var(--s1)', cats: ['us_politics', 'government', 'intl_politics', 'immigration_crime'] },
+  { key: 'Rights & media', label: 'Media', color: 'var(--s2)', cats: ['free_speech', 'media', 'culture_society'] },
+  { key: 'Companies', label: 'Companies', color: 'var(--s3)', cats: ['tesla', 'spacex', 'x_platform', 'ai', 'other_ventures'] },
+  { key: 'Science & tech', label: 'Science', color: 'var(--s4)', cats: ['science_tech'] },
+  { key: 'Economy & crypto', label: 'Economy', color: 'var(--s5)', cats: ['economy', 'crypto'] },
+  { key: 'News & events', label: 'News', color: 'var(--s6)', cats: ['news_events'] },
+  { key: 'Humor & personal', label: 'Humor', color: 'var(--s7)', cats: ['humor', 'personal'] },
+];
+const CAT_NAMES = {
+  us_politics: 'US politics & elections', government: 'Government spending & DOGE', intl_politics: 'International politics',
+  immigration_crime: 'Immigration & crime', free_speech: 'Free speech & censorship', media: 'Legacy-media criticism',
+  culture_society: 'Culture & society', tesla: 'Tesla', spacex: 'SpaceX & Starlink', x_platform: 'X / Twitter',
+  ai: 'AI, xAI & Grok', other_ventures: 'Neuralink, Boring Co & other', science_tech: 'Science & engineering',
+  economy: 'Economy & markets', crypto: 'Crypto & Dogecoin', news_events: 'News & events', humor: 'Humor & memes',
+  personal: 'Personal & recommendations',
+};
+const UNC = { key: 'Unclassifiable', label: 'Unclassified', color: 'var(--unc)' };
+const SEGS = [...GROUPS, UNC];
+/* Share (%) of ALL posts in a year: a category, or the unclassified remainder. */
+const share = (r, key) => key === UNC.key ? (r.unclassifiable_pct || 0) : (r.pct[key] || 0) * r.n_classified / r.n;
+const SVGNS = 'http://www.w3.org/2000/svg';
+const years = Object.keys(DATA.by_group).sort().filter(y => +y >= 2012);
+const yearLabel = y => y;
+const nCharted = years.reduce((t, y) => t + DATA.by_group[y].n, 0);
+const fmt = (v, d = 0) => (v == null ? '–' : v.toFixed(d));
+const fmtInt = v => v.toLocaleString('en-US');
+
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+/* Pooled share of a group across a set of years, weighted by classified post count. */
+function pooled(table, ys, key) {
+  let num = 0, den = 0;
+  for (const y of ys) {
+    const r = table[y]; if (!r) continue;
+    num += (r.pct[key] || 0) * r.n_classified / 100; den += r.n;
+  }
+  return den ? 100 * num / den : null;
+}
+function pooledN(table, ys) { return ys.reduce((s, y) => s + (table[y] ? table[y].n : 0), 0); }
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById('tooltip');
+function showTip(html, x, y) {
+  tip.innerHTML = html; tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  let left = x + 14, top = y + 14;
+  if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+  if (top + r.height > window.innerHeight - 8) top = y - r.height - 14;
+  tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+}
+function hideTip() { tip.hidden = true; }
+function bindTip(node, html) {
+  node.setAttribute('tabindex', '0');
+  node.addEventListener('pointermove', e => showTip(html, e.clientX, e.clientY));
+  node.addEventListener('pointerleave', hideTip);
+  node.addEventListener('focus', () => { const b = node.getBoundingClientRect(); showTip(html, b.right, b.top); });
+  node.addEventListener('blur', hideTip);
+}
+
+/* ---------- header copy + tiles ---------- */
+const early = years.filter(y => +y >= 2012 && +y <= 2019);
+const recent = years.filter(y => +y >= 2024);
+const polEarly = pooled(DATA.by_group, early, 'Politics');
+const polRecent = pooled(DATA.by_group, recent, 'Politics');
+const coEarly = pooled(DATA.by_group, early, 'Companies');
+const coRecent = pooled(DATA.by_group, recent, 'Companies');
+const lastYear = years[years.length - 1];
+
+document.getElementById('eyebrow').textContent =
+  `@elonmusk · ${fmtInt(nCharted)} posts · 2012–2025`;
+document.getElementById('lede').innerHTML =
+  `From 2012 to 2019, <strong>${fmt(coEarly)}%</strong> of his posts were about his companies.<br>` +
+  `In 2024–2025, politics was <strong>${fmt(polRecent)}%</strong> and his companies <strong>${fmt(coRecent)}%</strong>.`;
+
+/* ---------- chart 1: 100% stacked bars ---------- */
+(function stacked() {
+  const host = document.getElementById('chart-groups');
+  const W = 860, H = 380, m = { t: 10, r: 120, b: 52, l: 40 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Stacked bars: share of posts by category for each year' });
+  const step = iw / years.length, bw = Math.min(38, step * 0.7);
+  const ys = v => m.t + ih - (v / 100) * ih;
+  for (const v of [0, 25, 50, 75, 100]) {
+    el('line', { x1: m.l, x2: m.l + iw, y1: ys(v), y2: ys(v), class: v === 0 ? 'baseline' : 'gridline' }, svg);
+    el('text', { x: m.l - 8, y: ys(v) + 4, 'text-anchor': 'end', class: 'tick' }, svg).textContent = v + '%';
+  }
+  const box = document.getElementById('example');
+  let selected = null;
+  function showExample(y, g, node) {
+    if (selected) { selected.style.stroke = ''; selected.style.strokeWidth = ''; }
+    selected = node; node.style.stroke = 'var(--ink)'; node.style.strokeWidth = '2';
+    const ex = (DATA.examples[y] || {})[g.key];
+    box.textContent = '';
+    const add = (tag, cls, text) => { const e = document.createElement(tag); e.className = cls; e.textContent = text; box.appendChild(e); return e; };
+    if (!ex || !/^\d+$/.test(ex.id)) { add('p', 'example-hint', `No example post for ${yearLabel(y)} · ${g.label}.`); return; }
+    add('div', 'example-meta', `${yearLabel(y)} · ${g.label}${CAT_NAMES[ex.topic] ? ' · ' + CAT_NAMES[ex.topic] : ''} · most-liked post in this section (${fmtInt(ex.likes)} likes)`);
+    add('p', 'example-text', ex.text || '(photo, video or link only)');
+    const a = add('a', '', 'Open on X ↗'); a.href = `https://x.com/elonmusk/status/${ex.id}`; a.target = '_blank'; a.rel = 'noopener';
+  }
+  years.forEach((y, i) => {
+    const r = DATA.by_group[y];
+    const x = m.l + i * step + (step - bw) / 2;
+    let acc = 0;
+    [...SEGS].sort((a, b) => share(r, b.key) - share(r, a.key)).forEach(g => {
+      const v = share(r, g.key);
+      if (v <= 0) return;
+      const y0 = ys(acc + v), y1 = ys(acc);
+      const h = Math.max(0, y1 - y0 - 2);
+      const rect = el('rect', { x, y: y0 + 2, width: bw, height: h, fill: g.color, class: 'hit', rx: 2 }, svg);
+      rect.setAttribute('aria-label', `${yearLabel(y)}, ${g.label}: ${fmt(v, 1)}%`);
+      bindTip(rect, `<b>${yearLabel(y)} · ${g.label}</b><br>${fmt(v, 1)}% of posts<br><span class="t-sub">${fmtInt(Math.round(v * r.n / 100))} of ${fmtInt(r.n)} posts</span><br>Click for an example post`);
+      rect.classList.add('seg');
+      rect.addEventListener('click', () => showExample(y, g, rect));
+      rect.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showExample(y, g, rect); } });
+      acc += v;
+    });
+    el('text', { x: x + bw / 2, y: m.t + ih + 16, 'text-anchor': 'middle', class: 'tick' }, svg).textContent = yearLabel(y);
+    el('text', { x: x + bw / 2, y: m.t + ih + 31, 'text-anchor': 'middle', class: 'tick', style: 'font-size:9.5px' }, svg).textContent = r.n >= 1000 ? (r.n / 1000).toFixed(1) + 'k' : r.n;
+  });
+  el('text', { x: m.l - 8, y: m.t + ih + 31, 'text-anchor': 'end', class: 'tick', style: 'font-size:9.5px' }, svg).textContent = 'posts';
+  // direct labels on the last bar, only where the segment is tall enough
+  const last = DATA.by_group[lastYear];
+  let acc = 0;
+  const lx = m.l + (years.length - 1) * step + (step + bw) / 2 + 8;
+  [...SEGS].sort((a, b) => share(last, b.key) - share(last, a.key)).forEach(g => {
+    const v = share(last, g.key);
+    const mid = ys(acc + v / 2);
+    if ((v / 100) * ih >= 15) {
+      el('text', { x: lx, y: mid + 4, style: 'font-size:12px' }, svg).textContent = `${g.label} ${fmt(v)}%`;
+    }
+    acc += v;
+  });
+  host.appendChild(svg);
+
+  // The key and the table columns share one order: largest share in the first year first.
+  const keyOrder = [...SEGS].sort((a, b) => share(DATA.by_group[years[0]], b.key) - share(DATA.by_group[years[0]], a.key));
+  document.getElementById('legend-groups').innerHTML =
+    keyOrder.map(g => `<span><i style="background:${g.color}"></i>${g.label}</span>`).join('');
+
+  const t = document.getElementById('table-groups');
+  t.innerHTML = `<table><thead><tr><th>Year</th><th>Posts</th>${keyOrder.map(g => `<th>${g.label}</th>`).join('')}</tr></thead><tbody>` +
+    years.map(y => { const r = DATA.by_group[y]; return `<tr><td>${yearLabel(y)}</td><td>${fmtInt(r.n)}</td>${keyOrder.map(g => `<td>${fmt(share(r, g.key), 1)}%</td>`).join('')}</tr>`; }).join('') +
+    '</tbody></table>';
+  const btn = document.getElementById('toggle-group-table');
+  btn.addEventListener('click', () => {
+    const open = t.hidden; t.hidden = !open; host.hidden = open; box.hidden = open;
+    btn.textContent = open ? 'Show chart' : 'Show table'; btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+/* ---------- chart 2: grid of all topics, sorted by the chosen year (default 2012) ---------- */
+(function heat() {
+  const tbl = document.getElementById('heat');
+  const cap = 45; // share (%) at which a cell reaches full color
+  const cats = Object.keys(CAT_NAMES);
+  const val = (c, y) => { const r = DATA.by_category[y]; return (r.pct[c] || 0) * r.n_classified / r.n; };
+  let sortYear = years[0];
+
+  function cell(title, v, r) {
+    const tip = `<b>${title}</b><br>${fmt(v, 1)}% of posts<br><span class='t-sub'>${fmtInt(Math.round(v * r.n / 100))} of ${fmtInt(r.n)} posts</span>`;
+    const mix = Math.min(78, (v / cap) * 78).toFixed(1);
+    return `<td class="cell" tabindex="0" data-tip="${tip}" style="background: color-mix(in oklab, var(--accent) ${mix}%, var(--surface))">${v >= 0.5 ? fmt(v) : '·'}</td>`;
+  }
+
+  function render() {
+    const rows = [...cats].sort((a, b) => val(b, sortYear) - val(a, sortYear));
+    let html = `<thead><tr><th>Topic</th>${years.map(y =>
+      `<th><button class="sort${y === sortYear ? ' on' : ''}" data-year="${y}" type="button" aria-pressed="${y === sortYear}" title="Sort by ${y}">${yearLabel(y)}</button></th>`).join('')}</tr></thead><tbody>`;
+    rows.forEach(c => {
+      const cat = GROUPS.find(g => g.cats.includes(c));
+      html += `<tr><td>${CAT_NAMES[c]}<span class="grp">${cat ? cat.label : ''}</span></td>` + years.map(y =>
+        cell(`${yearLabel(y)} · ${CAT_NAMES[c]}`, val(c, y), DATA.by_category[y])).join('') + '</tr>';
+    });
+    html += '<tr class="group-start"><td>Unclassified</td>' + years.map(y => {
+      const r = DATA.by_group[y];
+      return cell(`${yearLabel(y)} · Unclassified`, share(r, UNC.key), r);
+    }).join('') + '</tr>';
+    tbl.innerHTML = html + '</tbody>';
+    tbl.querySelectorAll('td.cell').forEach(td => {
+      const h = td.dataset.tip;
+      td.addEventListener('pointermove', e => showTip(h, e.clientX, e.clientY));
+      td.addEventListener('pointerleave', hideTip);
+      td.addEventListener('focus', () => { const b = td.getBoundingClientRect(); showTip(h, b.right, b.top); });
+      td.addEventListener('blur', hideTip);
+    });
+    tbl.querySelectorAll('button.sort').forEach(btn => btn.addEventListener('click', () => {
+      sortYear = btn.dataset.year; hideTip(); render();
+      const again = tbl.querySelector(`button.sort[data-year="${sortYear}"]`); if (again) again.focus();
+    }));
+  }
+  render();
+})();
+
+/* ---------- chart 3: own posts vs quote tweets ---------- */
+(function kinds() {
+  const host = document.getElementById('chart-kind');
+  const own = DATA.by_group_kind['own post'], quote = DATA.by_group_kind['quote'];
+  const rows = GROUPS.map(g => ({ g, a: pooled(own, recent, g.key) || 0, b: pooled(quote, recent, g.key) || 0 }));
+  document.getElementById('n-own').textContent = `(${fmtInt(pooledN(own, recent))})`;
+  document.getElementById('n-quote').textContent = `(${fmtInt(pooledN(quote, recent))})`;
+  const max = Math.ceil(Math.max(...rows.flatMap(r => [r.a, r.b])) / 10) * 10;
+  const W = 860, rowH = 40, m = { t: 6, r: 56, b: 26, l: 150 };
+  const H = m.t + rows.length * rowH + m.b, iw = W - m.l - m.r;
+  const xs = v => m.l + (v / max) * iw;
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Paired bars: category share of own posts versus quote tweets, 2024 to 2025' });
+  for (let v = 0; v <= max; v += 10) {
+    el('line', { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, class: v === 0 ? 'baseline' : 'gridline' }, svg);
+    el('text', { x: xs(v), y: H - m.b + 16, 'text-anchor': 'middle', class: 'tick' }, svg).textContent = v + '%';
+  }
+  rows.forEach((r, i) => {
+    const y = m.t + i * rowH + 6;
+    el('text', { x: m.l - 10, y: y + 17, 'text-anchor': 'end', style: 'font-size:13px' }, svg).textContent = r.g.label;
+    [[r.a, 'var(--kind-own)', 'His own posts'], [r.b, 'var(--kind-quote)', 'Quote tweets']].forEach(([v, c, name], k) => {
+      const by = y + k * 14;
+      const w = Math.max(1, xs(v) - m.l);
+      const rect = el('rect', { x: m.l, y: by, width: w, height: 12, rx: 3, fill: c, class: 'hit' }, svg);
+      rect.setAttribute('aria-label', `${r.g.label}, ${name}: ${fmt(v, 1)}%`);
+      bindTip(rect, `<b>${r.g.label} · ${name}</b><br>${fmt(v, 1)}% of 2024–25 ${name.toLowerCase()}`);
+      el('text', { x: m.l + w + 6, y: by + 10, class: 'tick' }, svg).textContent = fmt(v) + '%';
+    });
+  });
+  host.appendChild(svg);
+})();
+
+/* ---------- method copy ---------- */
+const v = DATA.validation;
+const nPosts = ys => ys.reduce((t, y) => t + DATA.by_group[y].n, 0);
+const early12 = Object.keys(DATA.by_group).filter(y => +y >= 2012 && +y <= 2021).map(y => DATA.by_group[y].n);
+document.getElementById('m-data').innerHTML =
+  `${fmtInt(nCharted)} posts from @elonmusk, January 2012 to December 10, 2025, merged and de-duplicated from two public files in <a href="https://gist.github.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2">one GitHub gist</a>: <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/222650d9fd5870d82ee5c3b761125c12dbbcb09e/elonmusk-ALL-2025-12-10.json">elonmusk-ALL-2025-12-10.json</a> (18,384 posts, collected December 10, 2025) and <a href="https://gist.githubusercontent.com/j4ckxyz/1518890aa6d319d23a516bf14240d2b2/raw/3ac53dc15c8aecb2b0db6a4740df66514cc3c571/elonmusk_tweets_2025-11-02T01-12-31-543Z.json">elonmusk_tweets_2025-11-02T01-12-31-543Z.json</a> (12,885 posts, collected November 2, 2025). For each post, the tweet it quotes and any link title were fetched from X's public embed service. 59% of the posts quote another tweet.`;
+document.getElementById('m-class').textContent =
+  `Claude Haiku read each post, with the quoted tweet or link title alongside, and gave it one of 18 topics, or "unclassified" if no topic could be read. The 18 topics are grouped into 8 categories: Companies, Humor, Science, News, Media, Politics, Economy and Unclassified. The bars show categories and the grid shows topics, both as a share of all posts that year.`;
+document.getElementById('m-acc').textContent =
+  `As a check, Claude labeled 200 posts separately (150 random, 50 from before 2022), without a person reviewing them. Haiku chose the same topic ${fmt(v.exact)}% of the time and the same category ${fmt(v.group)}% of the time.`;
+const outside = { 2018: 2288, 2019: 2933, 2020: 3367, 2021: 3113, 2023: 13000 };
+const arch = y => DATA.by_group[y].n;
+const pctOf = y => Math.round(100 * arch(y) / outside[y]);
+document.getElementById('l-coverage').innerHTML =
+  `<b>This is a fraction of what he posted.</b> Outside counts, which differ in what they include, put his posts at about ${fmtInt(outside[2018])} in 2018, ${fmtInt(outside[2019])} in 2019, ${fmtInt(outside[2020])} in 2020, ${fmtInt(outside[2021])} in 2021 (<a href="https://www.visualcapitalist.com/a-decade-of-elon-musks-tweets-visualized/">Visual Capitalist</a>) and nearly ${fmtInt(outside[2023])} in 2023 (<a href="https://electionlawblog.org/2024/elon-musks-hard-turn-to-politics-in-300000-of-his-own-words/">WSJ analysis</a>). ` +
+  `This archive has ${fmtInt(arch('2018'))}, ${fmtInt(arch('2019'))}, ${fmtInt(arch('2020'))}, ${fmtInt(arch('2021'))} and ${fmtInt(arch('2023'))} for those years, which is ${pctOf(2018)}%, ${pctOf(2019)}%, ${pctOf(2020)}%, ${pctOf(2021)}% and ${pctOf(2023)}%. ` +
+  `Coverage is higher later: about 13% of his posts from January to July 2024, 58% from October 2024 to March 2025 and 29% in April 2025 (<a href="https://www.semafor.com/article/05/14/2025/elon-musk-posted-half-as-many-xeets-in-april">Semafor</a>). ` +
+  `I found no outside counts for 2012 to 2017 or 2022. A year's bar shows the mix of the posts in the archive, not of everything he posted that year.`;
+</script>

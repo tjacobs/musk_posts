@@ -1,0 +1,944 @@
+{
+ "n_total": 18390,
+ "n_labeled": 18390,
+ "by_group": {
+  "2010": {
+   "n": 1,
+   "n_classified": 1,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "Humor & personal": 100.0
+   }
+  },
+  "2011": {
+   "n": 36,
+   "n_classified": 34,
+   "unclassifiable_pct": 5.6,
+   "pct": {
+    "Humor & personal": 64.71,
+    "Companies": 17.65,
+    "Science & tech": 8.82,
+    "Politics": 5.88,
+    "Rights & media": 2.94
+   }
+  },
+  "2012": {
+   "n": 216,
+   "n_classified": 215,
+   "unclassifiable_pct": 0.5,
+   "pct": {
+    "Companies": 54.88,
+    "Humor & personal": 30.23,
+    "Science & tech": 8.37,
+    "News & events": 3.72,
+    "Rights & media": 2.33,
+    "Politics": 0.47
+   }
+  },
+  "2013": {
+   "n": 238,
+   "n_classified": 238,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "Companies": 72.69,
+    "Humor & personal": 12.61,
+    "Science & tech": 8.82,
+    "Politics": 3.78,
+    "News & events": 1.68,
+    "Economy & crypto": 0.42
+   }
+  },
+  "2014": {
+   "n": 130,
+   "n_classified": 128,
+   "unclassifiable_pct": 1.5,
+   "pct": {
+    "Companies": 70.31,
+    "Humor & personal": 18.75,
+    "Politics": 6.25,
+    "Rights & media": 1.56,
+    "Science & tech": 1.56,
+    "News & events": 1.56
+   }
+  },
+  "2015": {
+   "n": 193,
+   "n_classified": 193,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "Companies": 83.94,
+    "Humor & personal": 11.92,
+    "Science & tech": 4.15
+   }
+  },
+  "2016": {
+   "n": 274,
+   "n_classified": 266,
+   "unclassifiable_pct": 2.9,
+   "pct": {
+    "Companies": 77.07,
+    "Humor & personal": 13.16,
+    "Science & tech": 4.51,
+    "Politics": 2.26,
+    "News & events": 1.5,
+    "Rights & media": 1.13,
+    "Economy & crypto": 0.38
+   }
+  },
+  "2017": {
+   "n": 300,
+   "n_classified": 286,
+   "unclassifiable_pct": 4.7,
+   "pct": {
+    "Companies": 75.17,
+    "Humor & personal": 17.83,
+    "Science & tech": 3.5,
+    "Politics": 2.8,
+    "Rights & media": 0.35,
+    "News & events": 0.35
+   }
+  },
+  "2018": {
+   "n": 425,
+   "n_classified": 377,
+   "unclassifiable_pct": 11.3,
+   "pct": {
+    "Companies": 64.19,
+    "Humor & personal": 28.12,
+    "Rights & media": 2.92,
+    "Science & tech": 2.12,
+    "News & events": 1.59,
+    "Politics": 1.06
+   }
+  },
+  "2019": {
+   "n": 434,
+   "n_classified": 394,
+   "unclassifiable_pct": 9.2,
+   "pct": {
+    "Companies": 65.23,
+    "Humor & personal": 28.93,
+    "Science & tech": 4.06,
+    "Economy & crypto": 0.76,
+    "Rights & media": 0.51,
+    "Politics": 0.25,
+    "News & events": 0.25
+   }
+  },
+  "2020": {
+   "n": 426,
+   "n_classified": 366,
+   "unclassifiable_pct": 14.1,
+   "pct": {
+    "Companies": 50.0,
+    "Humor & personal": 35.52,
+    "Science & tech": 4.37,
+    "News & events": 3.28,
+    "Politics": 3.28,
+    "Rights & media": 2.73,
+    "Economy & crypto": 0.82
+   }
+  },
+  "2021": {
+   "n": 427,
+   "n_classified": 329,
+   "unclassifiable_pct": 23.0,
+   "pct": {
+    "Companies": 48.33,
+    "Humor & personal": 37.08,
+    "Economy & crypto": 8.81,
+    "Rights & media": 2.13,
+    "Science & tech": 2.13,
+    "Politics": 0.91,
+    "News & events": 0.61
+   }
+  },
+  "2022": {
+   "n": 803,
+   "n_classified": 617,
+   "unclassifiable_pct": 23.2,
+   "pct": {
+    "Companies": 52.84,
+    "Humor & personal": 24.31,
+    "Rights & media": 10.37,
+    "Politics": 6.48,
+    "News & events": 2.92,
+    "Economy & crypto": 1.94,
+    "Science & tech": 1.13
+   }
+  },
+  "2023": {
+   "n": 1157,
+   "n_classified": 907,
+   "unclassifiable_pct": 21.6,
+   "pct": {
+    "Companies": 58.77,
+    "Humor & personal": 20.84,
+    "Rights & media": 10.8,
+    "Politics": 7.5,
+    "Science & tech": 1.1,
+    "Economy & crypto": 0.55,
+    "News & events": 0.44
+   }
+  },
+  "2024": {
+   "n": 6017,
+   "n_classified": 5159,
+   "unclassifiable_pct": 14.3,
+   "pct": {
+    "Politics": 39.68,
+    "Companies": 31.09,
+    "Rights & media": 18.67,
+    "Humor & personal": 7.73,
+    "Science & tech": 1.18,
+    "Economy & crypto": 1.07,
+    "News & events": 0.58
+   }
+  },
+  "2025": {
+   "n": 7313,
+   "n_classified": 5977,
+   "unclassifiable_pct": 18.3,
+   "pct": {
+    "Politics": 45.57,
+    "Companies": 34.92,
+    "Rights & media": 11.16,
+    "Humor & personal": 4.99,
+    "Science & tech": 1.77,
+    "News & events": 0.84,
+    "Economy & crypto": 0.75
+   }
+  }
+ },
+ "by_category": {
+  "2010": {
+   "n": 1,
+   "n_classified": 1,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "personal": 100.0
+   }
+  },
+  "2011": {
+   "n": 36,
+   "n_classified": 34,
+   "unclassifiable_pct": 5.6,
+   "pct": {
+    "personal": 41.18,
+    "humor": 23.53,
+    "spacex": 8.82,
+    "science_tech": 8.82,
+    "tesla": 5.88,
+    "intl_politics": 5.88,
+    "x_platform": 2.94,
+    "media": 2.94
+   }
+  },
+  "2012": {
+   "n": 216,
+   "n_classified": 215,
+   "unclassifiable_pct": 0.5,
+   "pct": {
+    "spacex": 31.63,
+    "tesla": 21.4,
+    "personal": 15.81,
+    "humor": 14.42,
+    "science_tech": 8.37,
+    "news_events": 3.72,
+    "free_speech": 1.86,
+    "other_ventures": 1.4,
+    "intl_politics": 0.47,
+    "ai": 0.47,
+    "culture_society": 0.47
+   }
+  },
+  "2013": {
+   "n": 238,
+   "n_classified": 238,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "tesla": 36.97,
+    "spacex": 33.19,
+    "science_tech": 8.82,
+    "personal": 7.98,
+    "humor": 4.62,
+    "government": 2.94,
+    "other_ventures": 2.52,
+    "news_events": 1.68,
+    "us_politics": 0.42,
+    "intl_politics": 0.42,
+    "economy": 0.42
+   }
+  },
+  "2014": {
+   "n": 130,
+   "n_classified": 128,
+   "unclassifiable_pct": 1.5,
+   "pct": {
+    "tesla": 36.72,
+    "spacex": 29.69,
+    "personal": 14.06,
+    "government": 4.69,
+    "humor": 4.69,
+    "ai": 2.34,
+    "intl_politics": 1.56,
+    "media": 1.56,
+    "other_ventures": 1.56,
+    "science_tech": 1.56,
+    "news_events": 1.56
+   }
+  },
+  "2015": {
+   "n": 193,
+   "n_classified": 193,
+   "unclassifiable_pct": 0.0,
+   "pct": {
+    "spacex": 45.08,
+    "tesla": 30.57,
+    "personal": 9.33,
+    "ai": 4.15,
+    "other_ventures": 4.15,
+    "science_tech": 4.15,
+    "humor": 2.59
+   }
+  },
+  "2016": {
+   "n": 274,
+   "n_classified": 266,
+   "unclassifiable_pct": 2.9,
+   "pct": {
+    "tesla": 48.5,
+    "spacex": 24.44,
+    "personal": 9.02,
+    "science_tech": 4.51,
+    "humor": 4.14,
+    "ai": 2.63,
+    "news_events": 1.5,
+    "other_ventures": 1.5,
+    "media": 1.13,
+    "us_politics": 0.75,
+    "intl_politics": 0.75,
+    "government": 0.75,
+    "economy": 0.38
+   }
+  },
+  "2017": {
+   "n": 300,
+   "n_classified": 286,
+   "unclassifiable_pct": 4.7,
+   "pct": {
+    "spacex": 30.07,
+    "tesla": 25.87,
+    "other_ventures": 14.34,
+    "personal": 9.09,
+    "humor": 8.74,
+    "ai": 4.55,
+    "science_tech": 3.5,
+    "us_politics": 1.4,
+    "immigration_crime": 0.7,
+    "intl_politics": 0.7,
+    "media": 0.35,
+    "news_events": 0.35,
+    "x_platform": 0.35
+   }
+  },
+  "2018": {
+   "n": 425,
+   "n_classified": 377,
+   "unclassifiable_pct": 11.3,
+   "pct": {
+    "tesla": 30.24,
+    "spacex": 20.42,
+    "humor": 15.92,
+    "personal": 12.2,
+    "other_ventures": 11.41,
+    "media": 2.65,
+    "science_tech": 2.12,
+    "news_events": 1.59,
+    "ai": 1.33,
+    "x_platform": 0.8,
+    "intl_politics": 0.53,
+    "free_speech": 0.27,
+    "us_politics": 0.27,
+    "government": 0.27
+   }
+  },
+  "2019": {
+   "n": 434,
+   "n_classified": 394,
+   "unclassifiable_pct": 9.2,
+   "pct": {
+    "tesla": 42.39,
+    "spacex": 19.8,
+    "humor": 16.5,
+    "personal": 12.44,
+    "science_tech": 4.06,
+    "other_ventures": 2.28,
+    "crypto": 0.76,
+    "ai": 0.76,
+    "free_speech": 0.25,
+    "intl_politics": 0.25,
+    "media": 0.25,
+    "news_events": 0.25
+   }
+  },
+  "2020": {
+   "n": 426,
+   "n_classified": 366,
+   "unclassifiable_pct": 14.1,
+   "pct": {
+    "spacex": 22.95,
+    "tesla": 21.58,
+    "personal": 17.76,
+    "humor": 17.76,
+    "science_tech": 4.37,
+    "news_events": 3.28,
+    "other_ventures": 3.28,
+    "government": 2.46,
+    "culture_society": 2.19,
+    "ai": 1.37,
+    "x_platform": 0.82,
+    "media": 0.55,
+    "us_politics": 0.55,
+    "crypto": 0.55,
+    "intl_politics": 0.27,
+    "economy": 0.27
+   }
+  },
+  "2021": {
+   "n": 427,
+   "n_classified": 329,
+   "unclassifiable_pct": 23.0,
+   "pct": {
+    "spacex": 28.57,
+    "personal": 24.32,
+    "tesla": 17.63,
+    "humor": 12.77,
+    "crypto": 7.29,
+    "science_tech": 2.13,
+    "other_ventures": 1.82,
+    "economy": 1.52,
+    "culture_society": 1.22,
+    "free_speech": 0.91,
+    "news_events": 0.61,
+    "us_politics": 0.61,
+    "government": 0.3,
+    "ai": 0.3
+   }
+  },
+  "2022": {
+   "n": 803,
+   "n_classified": 617,
+   "unclassifiable_pct": 23.2,
+   "pct": {
+    "x_platform": 22.53,
+    "spacex": 16.37,
+    "personal": 16.37,
+    "tesla": 10.21,
+    "humor": 7.94,
+    "free_speech": 5.02,
+    "us_politics": 3.4,
+    "culture_society": 3.24,
+    "news_events": 2.92,
+    "other_ventures": 2.59,
+    "media": 2.11,
+    "intl_politics": 1.78,
+    "ai": 1.13,
+    "government": 1.13,
+    "science_tech": 1.13,
+    "economy": 1.13,
+    "crypto": 0.81,
+    "immigration_crime": 0.16
+   }
+  },
+  "2023": {
+   "n": 1157,
+   "n_classified": 907,
+   "unclassifiable_pct": 21.6,
+   "pct": {
+    "x_platform": 29.99,
+    "spacex": 15.77,
+    "personal": 10.58,
+    "humor": 10.25,
+    "ai": 6.95,
+    "tesla": 5.73,
+    "free_speech": 4.52,
+    "media": 3.97,
+    "us_politics": 2.98,
+    "culture_society": 2.32,
+    "immigration_crime": 1.87,
+    "intl_politics": 1.76,
+    "science_tech": 1.1,
+    "government": 0.88,
+    "economy": 0.55,
+    "news_events": 0.44,
+    "other_ventures": 0.33
+   }
+  },
+  "2024": {
+   "n": 6017,
+   "n_classified": 5159,
+   "unclassifiable_pct": 14.3,
+   "pct": {
+    "us_politics": 17.02,
+    "government": 11.28,
+    "spacex": 10.99,
+    "x_platform": 10.35,
+    "media": 7.37,
+    "immigration_crime": 6.53,
+    "culture_society": 6.05,
+    "free_speech": 5.25,
+    "intl_politics": 4.85,
+    "tesla": 4.83,
+    "ai": 4.44,
+    "humor": 4.28,
+    "personal": 3.45,
+    "science_tech": 1.18,
+    "economy": 1.05,
+    "news_events": 0.58,
+    "other_ventures": 0.48,
+    "crypto": 0.02
+   }
+  },
+  "2025": {
+   "n": 7313,
+   "n_classified": 5977,
+   "unclassifiable_pct": 18.3,
+   "pct": {
+    "government": 20.09,
+    "ai": 17.3,
+    "us_politics": 11.61,
+    "intl_politics": 7.58,
+    "spacex": 6.81,
+    "immigration_crime": 6.29,
+    "tesla": 5.94,
+    "culture_society": 4.65,
+    "x_platform": 4.28,
+    "media": 4.12,
+    "humor": 2.63,
+    "free_speech": 2.39,
+    "personal": 2.36,
+    "science_tech": 1.77,
+    "news_events": 0.84,
+    "economy": 0.75,
+    "other_ventures": 0.59
+   }
+  }
+ },
+ "by_group_kind": {
+  "own post": {
+   "2010": {
+    "n": 1,
+    "n_classified": 1,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Humor & personal": 100.0
+    }
+   },
+   "2011": {
+    "n": 36,
+    "n_classified": 34,
+    "unclassifiable_pct": 5.6,
+    "pct": {
+     "Humor & personal": 64.71,
+     "Companies": 17.65,
+     "Science & tech": 8.82,
+     "Politics": 5.88,
+     "Rights & media": 2.94
+    }
+   },
+   "2012": {
+    "n": 216,
+    "n_classified": 215,
+    "unclassifiable_pct": 0.5,
+    "pct": {
+     "Companies": 54.88,
+     "Humor & personal": 30.23,
+     "Science & tech": 8.37,
+     "News & events": 3.72,
+     "Rights & media": 2.33,
+     "Politics": 0.47
+    }
+   },
+   "2013": {
+    "n": 238,
+    "n_classified": 238,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 72.69,
+     "Humor & personal": 12.61,
+     "Science & tech": 8.82,
+     "Politics": 3.78,
+     "News & events": 1.68,
+     "Economy & crypto": 0.42
+    }
+   },
+   "2014": {
+    "n": 130,
+    "n_classified": 128,
+    "unclassifiable_pct": 1.5,
+    "pct": {
+     "Companies": 70.31,
+     "Humor & personal": 18.75,
+     "Politics": 6.25,
+     "Rights & media": 1.56,
+     "Science & tech": 1.56,
+     "News & events": 1.56
+    }
+   },
+   "2015": {
+    "n": 183,
+    "n_classified": 183,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 85.25,
+     "Humor & personal": 10.93,
+     "Science & tech": 3.83
+    }
+   },
+   "2016": {
+    "n": 243,
+    "n_classified": 235,
+    "unclassifiable_pct": 3.3,
+    "pct": {
+     "Companies": 77.87,
+     "Humor & personal": 13.62,
+     "Science & tech": 4.26,
+     "News & events": 1.28,
+     "Politics": 1.28,
+     "Rights & media": 1.28,
+     "Economy & crypto": 0.43
+    }
+   },
+   "2017": {
+    "n": 250,
+    "n_classified": 236,
+    "unclassifiable_pct": 5.6,
+    "pct": {
+     "Companies": 72.46,
+     "Humor & personal": 19.92,
+     "Science & tech": 3.81,
+     "Politics": 2.97,
+     "Rights & media": 0.42,
+     "News & events": 0.42
+    }
+   },
+   "2018": {
+    "n": 335,
+    "n_classified": 288,
+    "unclassifiable_pct": 14.0,
+    "pct": {
+     "Companies": 63.19,
+     "Humor & personal": 30.9,
+     "Rights & media": 2.08,
+     "News & events": 1.74,
+     "Science & tech": 1.39,
+     "Politics": 0.69
+    }
+   },
+   "2019": {
+    "n": 333,
+    "n_classified": 294,
+    "unclassifiable_pct": 11.7,
+    "pct": {
+     "Companies": 58.84,
+     "Humor & personal": 35.37,
+     "Science & tech": 3.4,
+     "Economy & crypto": 1.02,
+     "Rights & media": 0.68,
+     "Politics": 0.34,
+     "News & events": 0.34
+    }
+   },
+   "2020": {
+    "n": 369,
+    "n_classified": 309,
+    "unclassifiable_pct": 16.3,
+    "pct": {
+     "Companies": 44.98,
+     "Humor & personal": 40.78,
+     "Science & tech": 4.85,
+     "Politics": 3.56,
+     "Rights & media": 2.91,
+     "News & events": 2.27,
+     "Economy & crypto": 0.65
+    }
+   },
+   "2021": {
+    "n": 388,
+    "n_classified": 290,
+    "unclassifiable_pct": 25.3,
+    "pct": {
+     "Companies": 42.76,
+     "Humor & personal": 41.38,
+     "Economy & crypto": 9.31,
+     "Rights & media": 2.41,
+     "Science & tech": 2.41,
+     "Politics": 1.03,
+     "News & events": 0.69
+    }
+   },
+   "2022": {
+    "n": 696,
+    "n_classified": 513,
+    "unclassifiable_pct": 26.3,
+    "pct": {
+     "Companies": 49.71,
+     "Humor & personal": 28.07,
+     "Rights & media": 9.16,
+     "Politics": 6.63,
+     "News & events": 3.31,
+     "Economy & crypto": 1.95,
+     "Science & tech": 1.17
+    }
+   },
+   "2023": {
+    "n": 774,
+    "n_classified": 532,
+    "unclassifiable_pct": 31.3,
+    "pct": {
+     "Companies": 54.32,
+     "Humor & personal": 30.64,
+     "Rights & media": 7.14,
+     "Politics": 4.89,
+     "Science & tech": 1.5,
+     "Economy & crypto": 0.94,
+     "News & events": 0.56
+    }
+   },
+   "2024": {
+    "n": 1549,
+    "n_classified": 842,
+    "unclassifiable_pct": 45.6,
+    "pct": {
+     "Companies": 36.94,
+     "Politics": 26.01,
+     "Humor & personal": 20.67,
+     "Rights & media": 12.83,
+     "Science & tech": 1.43,
+     "Economy & crypto": 1.07,
+     "News & events": 1.07
+    }
+   },
+   "2025": {
+    "n": 1772,
+    "n_classified": 715,
+    "unclassifiable_pct": 59.7,
+    "pct": {
+     "Companies": 47.97,
+     "Politics": 30.91,
+     "Humor & personal": 12.59,
+     "Rights & media": 5.45,
+     "Science & tech": 1.54,
+     "News & events": 1.4,
+     "Economy & crypto": 0.14
+    }
+   }
+  },
+  "quote": {
+   "2010": {
+    "n": 0,
+    "n_classified": 0,
+    "unclassifiable_pct": null,
+    "pct": {}
+   },
+   "2011": {
+    "n": 0,
+    "n_classified": 0,
+    "unclassifiable_pct": null,
+    "pct": {}
+   },
+   "2012": {
+    "n": 0,
+    "n_classified": 0,
+    "unclassifiable_pct": null,
+    "pct": {}
+   },
+   "2013": {
+    "n": 0,
+    "n_classified": 0,
+    "unclassifiable_pct": null,
+    "pct": {}
+   },
+   "2014": {
+    "n": 0,
+    "n_classified": 0,
+    "unclassifiable_pct": null,
+    "pct": {}
+   },
+   "2015": {
+    "n": 10,
+    "n_classified": 10,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 60.0,
+     "Humor & personal": 30.0,
+     "Science & tech": 10.0
+    }
+   },
+   "2016": {
+    "n": 31,
+    "n_classified": 31,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 70.97,
+     "Humor & personal": 9.68,
+     "Politics": 9.68,
+     "Science & tech": 6.45,
+     "News & events": 3.23
+    }
+   },
+   "2017": {
+    "n": 50,
+    "n_classified": 50,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 88.0,
+     "Humor & personal": 8.0,
+     "Politics": 2.0,
+     "Science & tech": 2.0
+    }
+   },
+   "2018": {
+    "n": 90,
+    "n_classified": 89,
+    "unclassifiable_pct": 1.1,
+    "pct": {
+     "Companies": 67.42,
+     "Humor & personal": 19.1,
+     "Rights & media": 5.62,
+     "Science & tech": 4.49,
+     "Politics": 2.25,
+     "News & events": 1.12
+    }
+   },
+   "2019": {
+    "n": 101,
+    "n_classified": 100,
+    "unclassifiable_pct": 1.0,
+    "pct": {
+     "Companies": 84.0,
+     "Humor & personal": 10.0,
+     "Science & tech": 6.0
+    }
+   },
+   "2020": {
+    "n": 57,
+    "n_classified": 57,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 77.19,
+     "News & events": 8.77,
+     "Humor & personal": 7.02,
+     "Politics": 1.75,
+     "Rights & media": 1.75,
+     "Economy & crypto": 1.75,
+     "Science & tech": 1.75
+    }
+   },
+   "2021": {
+    "n": 39,
+    "n_classified": 39,
+    "unclassifiable_pct": 0.0,
+    "pct": {
+     "Companies": 89.74,
+     "Economy & crypto": 5.13,
+     "Humor & personal": 5.13
+    }
+   },
+   "2022": {
+    "n": 107,
+    "n_classified": 104,
+    "unclassifiable_pct": 2.8,
+    "pct": {
+     "Companies": 68.27,
+     "Rights & media": 16.35,
+     "Politics": 5.77,
+     "Humor & personal": 5.77,
+     "Economy & crypto": 1.92,
+     "Science & tech": 0.96,
+     "News & events": 0.96
+    }
+   },
+   "2023": {
+    "n": 383,
+    "n_classified": 375,
+    "unclassifiable_pct": 2.1,
+    "pct": {
+     "Companies": 65.07,
+     "Rights & media": 16.0,
+     "Politics": 11.2,
+     "Humor & personal": 6.93,
+     "Science & tech": 0.53,
+     "News & events": 0.27
+    }
+   },
+   "2024": {
+    "n": 4468,
+    "n_classified": 4317,
+    "unclassifiable_pct": 3.4,
+    "pct": {
+     "Politics": 42.34,
+     "Companies": 29.95,
+     "Rights & media": 19.81,
+     "Humor & personal": 5.21,
+     "Science & tech": 1.14,
+     "Economy & crypto": 1.07,
+     "News & events": 0.49
+    }
+   },
+   "2025": {
+    "n": 5541,
+    "n_classified": 5262,
+    "unclassifiable_pct": 5.0,
+    "pct": {
+     "Politics": 47.57,
+     "Companies": 33.14,
+     "Rights & media": 11.93,
+     "Humor & personal": 3.95,
+     "Science & tech": 1.81,
+     "Economy & crypto": 0.84,
+     "News & events": 0.76
+    }
+   }
+  }
+ },
+ "touches_politics": {
+  "2010": 0.0,
+  "2011": 5.88,
+  "2012": 3.72,
+  "2013": 7.14,
+  "2014": 8.59,
+  "2015": 0.52,
+  "2016": 3.38,
+  "2017": 5.59,
+  "2018": 1.59,
+  "2019": 0.25,
+  "2020": 4.1,
+  "2021": 1.52,
+  "2022": 9.56,
+  "2023": 10.47,
+  "2024": 49.54,
+  "2025": 52.28
+ },
+ "overall_category": {
+  "spacex": 12.77,
+  "government": 11.78,
+  "us_politics": 10.54,
+  "tesla": 10.22,
+  "ai": 8.9,
+  "x_platform": 7.81,
+  "personal": 5.88,
+  "humor": 5.48,
+  "intl_politics": 4.8,
+  "immigration_crime": 4.73,
+  "media": 4.49,
+  "culture_society": 4.16,
+  "free_speech": 3.2,
+  "science_tech": 1.97,
+  "other_ventures": 1.38,
+  "news_events": 0.92,
+  "economy": 0.77,
+  "crypto": 0.23
+ }
+}
