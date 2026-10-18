@@ -146,20 +146,6 @@ code { font-family: var(--font-data); font-size: 0.9em; }
     </div>
   </section>
 
-  <section hidden> <!-- hidden for now; remove the attribute to show -->
-    <div class="section-head">
-      <h2>His own posts vs. quote tweets, 2024–2025</h2>
-      <p>Quote tweets reshare someone else's post with a short comment. Most of his recent volume is quote tweets.</p>
-    </div>
-    <div class="card">
-      <div class="legend">
-        <span><i style="background: var(--kind-own)"></i>His own posts <span class="caption" id="n-own"></span></span>
-        <span><i style="background: var(--kind-quote)"></i>Quote tweets <span class="caption" id="n-quote"></span></span>
-      </div>
-      <div class="chart" id="chart-kind"></div>
-    </div>
-  </section>
-
   <section class="method">
     <div class="section-head"><h2>How this was made</h2></div>
     <div class="method-grid">
@@ -411,37 +397,6 @@ document.getElementById('lede').innerHTML =
     }));
   }
   render();
-})();
-
-/* ---------- chart 3: own posts vs quote tweets ---------- */
-(function kinds() {
-  const host = document.getElementById('chart-kind');
-  const own = DATA.by_group_kind['own post'], quote = DATA.by_group_kind['quote'];
-  const rows = GROUPS.map(g => ({ g, a: pooled(own, recent, g.key) || 0, b: pooled(quote, recent, g.key) || 0 }));
-  document.getElementById('n-own').textContent = `(${fmtInt(pooledN(own, recent))})`;
-  document.getElementById('n-quote').textContent = `(${fmtInt(pooledN(quote, recent))})`;
-  const max = Math.ceil(Math.max(...rows.flatMap(r => [r.a, r.b])) / 10) * 10;
-  const W = 860, rowH = 40, m = { t: 6, r: 56, b: 26, l: 150 };
-  const H = m.t + rows.length * rowH + m.b, iw = W - m.l - m.r;
-  const xs = v => m.l + (v / max) * iw;
-  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Paired bars: category share of own posts versus quote tweets, 2024 to 2025' });
-  for (let v = 0; v <= max; v += 10) {
-    el('line', { x1: xs(v), x2: xs(v), y1: m.t, y2: H - m.b, class: v === 0 ? 'baseline' : 'gridline' }, svg);
-    el('text', { x: xs(v), y: H - m.b + 16, 'text-anchor': 'middle', class: 'tick' }, svg).textContent = v + '%';
-  }
-  rows.forEach((r, i) => {
-    const y = m.t + i * rowH + 6;
-    el('text', { x: m.l - 10, y: y + 17, 'text-anchor': 'end', style: 'font-size:13px' }, svg).textContent = r.g.label;
-    [[r.a, 'var(--kind-own)', 'His own posts'], [r.b, 'var(--kind-quote)', 'Quote tweets']].forEach(([v, c, name], k) => {
-      const by = y + k * 14;
-      const w = Math.max(1, xs(v) - m.l);
-      const rect = el('rect', { x: m.l, y: by, width: w, height: 12, rx: 3, fill: c, class: 'hit' }, svg);
-      rect.setAttribute('aria-label', `${r.g.label}, ${name}: ${fmt(v, 1)}%`);
-      bindTip(rect, `<b>${r.g.label} · ${name}</b><br>${fmt(v, 1)}% of 2024–25 ${name.toLowerCase()}`);
-      el('text', { x: m.l + w + 6, y: by + 10, class: 'tick' }, svg).textContent = fmt(v) + '%';
-    });
-  });
-  host.appendChild(svg);
 })();
 
 /* ---------- method copy ---------- */
