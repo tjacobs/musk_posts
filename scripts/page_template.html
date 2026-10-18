@@ -73,6 +73,7 @@ svg .hit:focus-visible { stroke: var(--ink); stroke-width: 2; }
 .example-text { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 70ch; }
 .example a { font-size: 13px; width: fit-content; }
 svg .seg { cursor: pointer; }
+td.shade { text-align: center; border: 2px solid var(--surface); border-radius: 4px; }
 .table-wrap { overflow-x: auto; }
 table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
 th, td { padding: 5px 8px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -84,6 +85,9 @@ tbody td:first-child { font-family: var(--font-body); font-size: 12.5px; color: 
 .heat td.cell { font-family: var(--font-data); font-size: 11.5px; color: var(--ink); text-align: center; min-width: 34px; padding: 6px 2px; border: 2px solid var(--surface); border-radius: 4px; }
 .heat thead th { text-align: center; font-family: var(--font-data); font-weight: 500; font-size: 11px; color: var(--muted); border-bottom: none; }
 .heat thead th:first-child { text-align: left; }
+.heat { table-layout: fixed; min-width: 640px; }
+.heat th:first-child, .heat td:first-child { width: 168px; white-space: normal; }
+.heat td.cell { min-width: 0; padding: 6px 0; font-size: 11px; }
 .sort { font: inherit; font-family: var(--font-data); font-size: 11px; color: var(--muted); background: none; border: 0; border-radius: 4px; padding: 2px 3px; cursor: pointer; }
 .sort:hover { color: var(--ink); }
 .sort.on { color: var(--ink); font-weight: 500; }
@@ -101,7 +105,7 @@ tbody td:first-child { font-family: var(--font-body); font-size: 12.5px; color: 
 .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
 .method-grid div { display: grid; gap: 4px; align-content: start; }
 .method-grid p, .method li { font-size: 14px; color: var(--ink-2); }
-.method ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 70ch; }
+.method ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 a { color: var(--ink); text-decoration-color: var(--axis); text-underline-offset: 2px; overflow-wrap: anywhere; }
 a:hover { text-decoration-color: var(--ink); }
 code { font-family: var(--font-data); font-size: 0.9em; }
@@ -133,8 +137,8 @@ code { font-family: var(--font-data); font-size: 0.9em; }
 
   <section>
     <div class="section-head">
-      <h2>All 18 topics</h2>
-      <p>Percent of each year's posts by topic, highest first. Each topic belongs to a category, shown under its name. Darker cells are larger shares. Click a year to sort by it.</p>
+      <h2>Posts per topic</h2>
+      <p>Topics break down categories even further, with 18 topics total. Shown here is the percent of each year's posts by topic. Each topic belongs to a category, shown under its name. Darker cells are larger shares. Click a year to sort by it.</p>
     </div>
     <div class="card">
       <div class="table-wrap"><table class="heat" id="heat"></table></div>
@@ -333,7 +337,7 @@ document.getElementById('lede').innerHTML =
 
   const t = document.getElementById('table-groups');
   t.innerHTML = `<table><thead><tr><th>Year</th><th>Posts</th>${keyOrder.map(g => `<th>${g.label}</th>`).join('')}</tr></thead><tbody>` +
-    years.map(y => { const r = DATA.by_group[y]; return `<tr><td>${yearLabel(y)}</td><td>${fmtInt(r.n)}</td>${keyOrder.map(g => `<td>${fmt(share(r, g.key), 1)}%</td>`).join('')}</tr>`; }).join('') +
+    years.map(y => { const r = DATA.by_group[y]; return `<tr><td>${yearLabel(y)}</td><td>${fmtInt(r.n)}</td>${keyOrder.map(g => { const v = share(r, g.key); return `<td class="shade" style="background: color-mix(in oklab, var(--accent) ${Math.min(78, v / 45 * 78).toFixed(1)}%, var(--surface))">${fmt(v, 1)}%</td>`; }).join('')}</tr>`; }).join('') +
     '</tbody></table>';
   const btn = document.getElementById('toggle-group-table');
   btn.addEventListener('click', () => {
@@ -353,7 +357,7 @@ document.getElementById('lede').innerHTML =
   function cell(title, v, r) {
     const tip = `<b>${title}</b><br>${fmt(v, 1)}% of posts<br><span class='t-sub'>${fmtInt(Math.round(v * r.n / 100))} of ${fmtInt(r.n)} posts</span>`;
     const mix = Math.min(78, (v / cap) * 78).toFixed(1);
-    return `<td class="cell" tabindex="0" data-tip="${tip}" style="background: color-mix(in oklab, var(--accent) ${mix}%, var(--surface))">${v >= 0.5 ? fmt(v) : '·'}</td>`;
+    return `<td class="cell" tabindex="0" data-tip="${tip}" style="background: color-mix(in oklab, var(--accent) ${mix}%, var(--surface))">${v >= 0.5 ? fmt(v) + '%' : '·'}</td>`;
   }
 
   function render() {
